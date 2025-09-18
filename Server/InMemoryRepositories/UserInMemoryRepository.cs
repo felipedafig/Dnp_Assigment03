@@ -11,13 +11,13 @@ public class UserInMemoryRepository : IUserRepository
     {
         Users = new List<User>();
     }
-    public Task<User> AddAsync(User User)
+    public Task<User> AddAsync(User user)
     {
-        User.Id = Users.Any()
+        user.Id = Users.Any()
         ? Users.Max(p => p.Id) + 1
         : 1;
-        Users.Add(User);
-        return Task.FromResult(User);
+        Users.Add(user);
+        return Task.FromResult(user);
     }
 
     public Task DeleteAsync(int id)
